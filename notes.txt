@@ -1,7 +1,9 @@
 Trader
 has_many :trades
-has_many :instruments, through: trades
+has_many :instruments, through: :trades
 has_many :comments
+has_many :commented_trades, through: :comments, class_name: "Trade"
+
 
 name
 email
