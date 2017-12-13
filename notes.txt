@@ -23,8 +23,9 @@ belongs_to :trader
 belongs_to :instrument
 has_many :comments
 
-buy_price
-sell_price
+type
+entry_price
+exit_price
 quantity
 notes
 trader_id
