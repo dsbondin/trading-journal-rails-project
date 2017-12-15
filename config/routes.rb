@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     resources :trades, only: [:show, :index]
   end
 
+  resources :instruments, only: [:index, :show] do
+    resources :trades, only: [:show, :index]
+  end
+
   resources :trades
-  resources :instruments
 
 end

@@ -4,6 +4,10 @@
 </h3>
 
 <p>
+  Date: <%= @trade.created_at.strftime("%b %e, %Y") %>
+</p>
+
+<p>
   Entry price: <%= to_currency(@trade.entry) %>
 </p>
 

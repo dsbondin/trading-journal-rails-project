@@ -17,12 +17,14 @@ body {
    width: 800px;
    height: 100%;
    margin: auto;
-   padding: 20px;
+   padding: 10px;
    background-color: #EEE;
-   font-family: georgia, verdana
+   font-family: verdana, georgia;
    padding-bottom: 30px;
 }
 
 nav {
-  background-color: #CCC;
+  padding: 10px;
+  height: 80px;
+  background-color: #BBB;
 }

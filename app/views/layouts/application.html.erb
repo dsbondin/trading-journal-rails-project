@@ -11,20 +11,21 @@
     <div align="center"><h1>Trading Journal</h1> </div>
 
       <nav>
-
+        <h3>
           <%= link_to "Home", root_path %> |
           <% unless trader_signed_in? %>
             <%= link_to("Sign Up", new_trader_registration_path) %> |
             <%= link_to("Log In", new_trader_session_path) %> |
           <% else %>
-            <%= link_to "Trades", trades_path %> |
-            <%= link_to "Traders", traders_path %>
-
-            | Signed in as <%= current_trader.email %>
+            <%= link_to "My Trades", trader_trades_path(current_trader) %> |
+            <%= link_to "All Trades", trades_path %> |
+            <%= link_to "Traders", traders_path %> |
+            <%= link_to "Instruments", instruments_path %> |
+            <%= link_to "New Trade", new_trade_path %>
+            <div align="right"><%= current_trader.email %></div>
           <% end %>
-
-        <%= link_to("Sign out", destroy_trader_session_path, :method => 'delete') if trader_signed_in? %>
-
+          <div align="right"><%= link_to("Sign out", destroy_trader_session_path, :method => 'delete') if trader_signed_in? %></div>
+        </h3>
       </nav>
 
     <%= yield %>

@@ -1,0 +1,3 @@
+<% @instruments.each do |i| %>
+  <h3><%= link_to i.symbol, instrument_trades_path(i) %></h3>
+<% end %>

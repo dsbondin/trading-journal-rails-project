@@ -3,6 +3,8 @@ class TradesController < ApplicationController
   def index
     if id = params[:trader_id]
       @trades = Trader.find_by(id: id).trades
+    elsif id = params[:instrument_id]
+      @trades = Instrument.find_by(id: id).trades
     else
       @trades = Trade.all
     end
