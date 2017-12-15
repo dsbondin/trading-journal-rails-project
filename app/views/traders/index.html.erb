@@ -1,0 +1,3 @@
+<% @traders.each do |t| %>
+  <p><%= link_to t.email, trader_trades_path(t) %></p>
+<% end %>

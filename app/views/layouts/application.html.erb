@@ -8,8 +8,25 @@
   </head>
 
   <body>
+    <div align="center"><h1>Trading Journal</h1> </div>
 
-    <%= render 'layouts/header' %>
+      <nav>
+
+          <%= link_to "Home", root_path %> |
+          <% unless trader_signed_in? %>
+            <%= link_to("Sign Up", new_trader_registration_path) %> |
+            <%= link_to("Log In", new_trader_session_path) %> |
+          <% else %>
+            <%= link_to "Trades", trades_path %> |
+            <%= link_to "Traders", traders_path %>
+
+            | Signed in as <%= current_trader.email %>
+          <% end %>
+
+        <%= link_to("Sign out", destroy_trader_session_path, :method => 'delete') if trader_signed_in? %>
+
+      </nav>
+
     <%= yield %>
 
   </body>

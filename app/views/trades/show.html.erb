@@ -1,0 +1,20 @@
+<h3>
+  <%= @trade.direction.capitalize %>
+  <%= @trade.instrument.symbol %>
+</h3>
+
+<p>
+  Entry price: <%= to_currency(@trade.entry) %>
+</p>
+
+<p>
+  Exit price: <%= to_currency(@trade.exit) %>
+</p>
+
+<p>
+  Size: <%= @trade.quantity %>
+</p>
+
+<p>
+  Profit/loss: <%= to_currency(@trade.profit_loss) %>
+</p>

@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213002006) do
+ActiveRecord::Schema.define(version: 20171214011940) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "trader_id"
+    t.integer "trade_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string "symbol"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "traders", force: :cascade do |t|
     t.string "name"
@@ -26,8 +41,24 @@ ActiveRecord::Schema.define(version: 20171213002006) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_traders_on_email", unique: true
+    t.index ["provider"], name: "index_traders_on_provider"
     t.index ["reset_password_token"], name: "index_traders_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_traders_on_uid"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.string "direction"
+    t.float "entry"
+    t.float "exit"
+    t.integer "quantity"
+    t.text "notes"
+    t.integer "trader_id"
+    t.integer "instrument_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

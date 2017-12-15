@@ -1,0 +1,37 @@
+<h3>New Trade</h3>
+
+<%= form_for @trade do |f| %>
+  <p>
+    <%= f.label "TRADE DIRECTION:" %>
+    <%= f.radio_button :direction , "long", checked: true %> Long
+    <%= f.radio_button :direction , "short" %> Short
+  </p>
+
+  <p>
+    <%= f.label "Choose Instrument:" %>
+    <%= f.collection_select :instrument_id, Instrument.order(:symbol), :id, :symbol, include_blank: true %>
+
+    <%= f.label "Or add your own:" %>
+    <%= f.fields_for :instrument, @trade.build_instrument do |i| %>
+      <%= i.text_field :symbol %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label "Entry price:" %>
+    <%= f.number_field :entry %>
+  </p>
+
+  <p>
+    <%= f.label "Exit price:" %>
+    <%= f.number_field :exit %>
+  </p>
+
+  <p>
+    <%= f.label "Quantity:" %>
+    <%= f.number_field :quantity %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>
