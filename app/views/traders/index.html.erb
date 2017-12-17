@@ -1,3 +1,5 @@
 <% @traders.each do |t| %>
-  <p><b><%= t.email %></b> | <%= link_to "Go to trades", trader_trades_path(t) %></p>
+  <p>
+    <b><%= link_to t.email, trader_path(t) %></b>
+  </p>
 <% end %>

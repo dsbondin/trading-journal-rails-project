@@ -1,7 +1,11 @@
 class InstrumentsController < ApplicationController
 
   def index
-    @instruments = Instrument.all
+    if id = params[:trader_id]
+      @instruments = Trader.find_by(id: id).instruments
+    else
+      @instruments = Instrument.all
+    end
   end
 
   def show

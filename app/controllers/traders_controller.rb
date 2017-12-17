@@ -5,7 +5,8 @@ class TradersController < ApplicationController
   end
 
   def show
-    @trader = Trader.find_by(params[:id])
+    # raise params.inspect
+    @trader = Trader.find_by(id: params[:id])
   end
 
 end

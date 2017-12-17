@@ -10,6 +10,10 @@ class TradesController < ApplicationController
     end
   end
 
+  def show
+    set_trade
+  end
+
   def new
     @trade = Trade.new
   end
@@ -18,19 +22,54 @@ class TradesController < ApplicationController
     remove_empty_symbol
     @trade = current_trader.trades.build(trade_params)
     if @trade.save
-      redirect_to trade_path(@trade)
+      redirect_to trader_trade_path(current_trader, @trade)
     else
       render :new
     end
   end
 
-  def show
-    @trade = Trade.find_by(id: params[:id])
+  def edit
+    set_trade
   end
 
+  def update
+    remove_empty_symbol
+    set_trade
+    if @trade.trader == current_trader
+      if @trade.update(trade_params)
+        redirect_to trade_path(@trade)
+      else
+        render :edit
+      end
+    else
+      redirect_to :index # you don't have permission to edit this trade
+    end
+  end
+
+  def destroy
+    set_trade
+    @trade.delete if @trade.trader == current_trader
+    redirect_to trader_trades_path(current_trader)
+  end
+
+  def best
+    @trade = Trade.most_profitable
+    render :show
+  end
+
+  def worst
+    @trade = Trade.least_profitable
+    render :show
+  end
+
+
   private
+    def set_trade
+      @trade = Trade.find_by(id: params[:id])
+    end
+
     def trade_params
-      params.require(:trade).permit(:direction, :entry, :exit, :quantity, :instrument_id, instrument_attributes: [:symbol])
+      params.require(:trade).permit(:direction, :entry, :exit, :quantity, :notes, :instrument_id, instrument_attributes: [:symbol])
     end
 
     def remove_empty_symbol
