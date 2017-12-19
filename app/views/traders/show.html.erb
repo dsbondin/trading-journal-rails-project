@@ -2,8 +2,10 @@
 
 <p>
   <%= link_to pluralize(@trader.trades.count, 'trade'), trader_trades_path(@trader) %> |
-  <%= link_to "Best", trader_trade_path(@trader, @trader.best_trade) %> |
-  <%= link_to "Worst", trader_trade_path(@trader, @trader.worst_trade) %>
+  <% unless @trader.trades.empty? %>
+    <%= link_to "Best", trader_trade_path(@trader, @trader.best_trade) %> |
+    <%= link_to "Worst", trader_trade_path(@trader, @trader.worst_trade) %>
+  <% end %>
 </p>
 
 <p>

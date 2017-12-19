@@ -2,10 +2,6 @@
   <%= @trade.direction.capitalize %>
   <%= @trade.instrument.symbol %> |
   Trader: <%= @trade.trader.email %>
-  <%  if @trade.trader == current_trader %>
-    <%= link_to"Edit", edit_trade_path(@trade) %> |
-    <%= link_to("Delete", @trade, method: :delete) %>
-  <% end %>
 </h3>
 
 <p>
@@ -30,4 +26,11 @@
 
 <p>
   Notes: <%= @trade.notes %>
+</p>
+
+<p>
+  <% if @trade.trader == current_trader %>
+    <%= link_to"Edit", edit_trade_path(@trade) %> |
+    <%= link_to("Delete", @trade, method: :delete) %>
+  <% end %>
 </p>

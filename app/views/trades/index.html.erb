@@ -1,11 +1,3 @@
+<h3>All Trades</h3>
 
-<% @trades.each do |t| %>
-  <p>
-    <%= link_to t.name, trade_path(t) %> |
-    by <%= t.trader.email %> |
-    <% if t.trader == current_trader %>
-      <%= link_to("Edit", edit_trade_path(t)) %> |
-      <%= link_to("Delete", t, method: :delete) %>
-    <% end %>
-  </p>
-<% end %>
+<%= render 'index' %>
