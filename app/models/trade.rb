@@ -21,7 +21,7 @@ class Trade < ApplicationRecord
   end
 
   def formatted_profit_loss
-    num_profit_loss >= 0 ? "$#{profit_loss}" : "-$#{-profit_loss}"
+    profit_loss >= 0 ? "$#{profit_loss}" : "-$#{-profit_loss}"
   end
 
   def self.most_profitable
