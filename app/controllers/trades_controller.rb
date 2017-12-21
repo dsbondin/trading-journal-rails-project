@@ -21,7 +21,6 @@ class TradesController < ApplicationController
   end
 
   def create
-    remove_empty_symbol
     @trade = current_trader.trades.build(trade_params)
     if @trade.save
       redirect_to trader_trade_path(current_trader, @trade)
@@ -35,7 +34,6 @@ class TradesController < ApplicationController
   end
 
   def update
-    remove_empty_symbol
     set_trade
     if @trade.trader == current_trader
       if @trade.update(trade_params)
@@ -44,7 +42,7 @@ class TradesController < ApplicationController
         render :edit
       end
     else
-      redirect_to :index # you don't have permission to edit this trade
+      redirect_to :index
     end
   end
 
@@ -74,8 +72,8 @@ class TradesController < ApplicationController
       params.require(:trade).permit(:direction, :entry, :exit, :quantity, :notes, :instrument_id, instrument_attributes: [:symbol])
     end
 
-    def remove_empty_symbol
-      params[:trade].delete(:instrument_attributes) if params[:trade][:instrument_attributes][:symbol] == ""
-    end
+    # def remove_empty_symbol
+    #   params[:trade].delete(:instrument_attributes) if params[:trade][:instrument_attributes][:symbol] == ""
+    # end
 
 end

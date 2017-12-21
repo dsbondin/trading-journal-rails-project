@@ -17,9 +17,9 @@
     <%= f.label "Choose Instrument:" %>
     <%= f.collection_select :instrument_id, Instrument.order(:symbol), :id, :symbol, include_blank: true %>
 
-    <%= f.label "Or add your own:" %>
+    <%= f.label "Or add new:" %>
     <%= f.fields_for :instrument, @trade.build_instrument do |i| %>
-      <%= i.text_field :symbol, size: "6x1" %>
+      <%= i.text_field :symbol, size: "8x1" %>
     <% end %>
   </p>
 

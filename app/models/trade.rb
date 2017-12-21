@@ -12,8 +12,8 @@ class Trade < ApplicationRecord
     "#{direction.capitalize} #{instrument.symbol}"
   end
 
-  def instrument_attributes=(symbol)
-    self.instrument = Instrument.find_or_create_by(symbol)
+  def instrument_attributes=(attr)
+    self.instrument = Instrument.find_or_create_by(attr) unless attr[:symbol] == ""
   end
 
   def num_profit_loss

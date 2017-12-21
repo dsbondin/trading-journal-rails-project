@@ -1,3 +1,8 @@
-<h3>Trades using <%= @trades[0].instrument.symbol %></h3>
 
-<%= render 'index' %>
+<% if @trades && !@trades.empty? %>
+  <h3>Trades with <%= @trades[0].instrument.symbol %></h3>
+
+  <%= render 'index' %>
+<% else %>
+  <h3>No trades yet</h3>
+<% end %>
