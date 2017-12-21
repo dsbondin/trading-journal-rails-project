@@ -20,16 +20,16 @@ class Trader < ApplicationRecord
   end
 
   def best_trade
-    self.trades.max_by { |trade| trade.num_profit_loss }
+    self.trades.max_by { |trade| trade.profit_loss }
   end
 
   def worst_trade
-    self.trades.min_by { |trade| trade.num_profit_loss }
+    self.trades.min_by { |trade| trade.profit_loss }
   end
 
   def total_pnl
     sum = 0
-    self.trades.each { |trade| sum += trade.num_profit_loss}
+    self.trades.each { |trade| sum += trade.profit_loss}
     sum
   end
 
