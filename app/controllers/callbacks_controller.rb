@@ -1,13 +1,18 @@
 class CallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
-    @trader = Trader.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @trader
+    sign_in_trader
   end
 
   def github
-    @trader = Trader.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @trader
+    sign_in_trader
   end
+  
+  private
+  
+    def sign_in_trader
+      @trader = Trader.from_omniauth(request.env["omniauth.auth"])
+      sign_in_and_redirect @trader
+    end
 
 end
