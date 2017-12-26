@@ -32,5 +32,9 @@ class Trader < ApplicationRecord
     self.trades.each { |trade| sum += trade.profit_loss}
     sum
   end
+  
+#   def self.leader
+#     all.max_by { |trader| trader.total_pnl }
+#   end
 
 end
