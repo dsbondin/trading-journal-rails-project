@@ -26,6 +26,7 @@ class TradesController < ApplicationController
       redirect_to trader_trade_path(current_trader, @trade)
     else
       render :new
+      # add error message
     end
   end
 
@@ -40,26 +41,29 @@ class TradesController < ApplicationController
         redirect_to trade_path(@trade)
       else
         render :edit
+        # add error message
       end
     else
       redirect_to :index
+      # add error message
     end
   end
 
   def destroy
     set_trade
     @trade.delete if @trade.trader == current_trader
+    # add error message
     redirect_to trader_trades_path(current_trader)
   end
 
   def best
     @trade = Trade.most_profitable
-    render :show
+    render :show #???
   end
 
   def worst
     @trade = Trade.least_profitable
-    render :show
+    render :show #???
   end
 
 
