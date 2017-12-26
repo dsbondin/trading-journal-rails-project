@@ -1,3 +1,7 @@
+/* @font-face {
+    font-family: "Muli";
+    src: url(https://fonts.googleapis.com/css?family=Muli) format("truetype");
+} */
 
 body {
    width: 877px;
@@ -5,7 +9,7 @@ body {
    margin: auto;
    padding: 10px;
    background-color: #EEE;
-   font-family: "Aktiv Grotesk", "Proxima Nova", verdana, georgia;
+   font-family: "Muli", verdana, georgia;
    padding-bottom: 30px;
 }
 
