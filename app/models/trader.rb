@@ -27,7 +27,7 @@ class Trader < ApplicationRecord
     self.trades.min_by { |trade| trade.profit_loss }
   end
 
-  def total_pnl # refactor into inject method?
+  def total_pnl # refactor into inject or sum method? https://stackoverflow.com/questions/1538789/how-to-sum-array-of-numbers-in-ruby
     sum = 0
     self.trades.each { |trade| sum += trade.profit_loss}
     sum
